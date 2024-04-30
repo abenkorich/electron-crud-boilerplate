@@ -1,0 +1,22 @@
+{
+  "name": "electron-crud-boilerplate",
+  "version": "1.0.0",
+  "description": "basics crud operation usibg sqlite project for electron",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "watch": "nodemon --exec electron ."
+  },
+  "author": "Bena.dev",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.1",
+    "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.6.0",
+    "nodemon": "^3.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
