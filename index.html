@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Form</title>
+</head>
+<body>
+  <h1>Add a Product</h1>
+  <form id="product-form">
+    <label for="product-photo">Add a product photo:</label>
+    <input type="file" id="product-photo" name="product-photo"><br><br>
+    
+    <label for="product-name">Product name:</label>
+    <input type="text" id="product-name" name="product-name" required><br><br>
+    
+    <label for="product-type">Product type:</label>
+    <select id="product-type" name="product-type">
+      <option value="Candle">Candle</option>
+      <!-- Add more product types here -->
+    </select><br><br>
+    
+    <input type="radio" id="fixed-price" name="price-type" value="Fixed" checked>
+    <label for="fixed-price">Fixed price</label>
+    <input type="radio" id="price-range" name="price-type" value="Range">
+    <label for="price-range">Price range</label><br><br>
+    
+    <label for="product-price">Product price (USD):</label>
+    <input type="number" id="product-price" name="product-price"><br><br>
+    
+    <label for="product-description">Product description:</label>
+    <textarea id="product-description" name="product-description"></textarea><br><br>
+    
+    <button type="button" id="cancel-button">Cancel</button>
+    <button type="submit" id="save-button">Save</button>
+  </form>
+
+  <script>
+
+    console.log('Version >> ',window.electronAPI.versions)
+    // Include the preload script
+    window.addEventListener('DOMContentLoaded', () => {
+      //const { ipcRenderer } = require('electron');
+      
+      document.getElementById('product-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const product = {
+          name: document.getElementById('product-name').value,
+          type: document.getElementById('product-type').value,
+          price: document.getElementById('product-price').value,
+          description: document.getElementById('product-description').value,
+          photoPath: document.getElementById('product-photo').files[0].path
+        };
+        //ipcRenderer.send('submit-form', product);
+        window.electronAPI.submitForm(product);
+      });
+      
+      //ipcRenderer.on('form-submission-reply', (event, response) => {
+      //  alert(response);
+      //});
+    });
+  </script>
+</body>
+</html>
